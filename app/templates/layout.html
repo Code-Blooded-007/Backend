@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% if title %}
+        <title>{{ title }} - ACTIVE SERVER</title>
+    {% else %}
+        <title>Welcome to Active Server</title>
+   	{% endif %}
+
+   	<style>
+	table, th, td {
+	  border: 1px solid black;
+	}
+	</style>
+</head>
+<body>
+	<h1>ACTIVE SERVER</h1>
+	{% block content %}{% endblock %}
+</body>
+</html>
