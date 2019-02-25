@@ -4,9 +4,6 @@
 {% block content %}
     <p>index.html</p>
 
-    {% for website in websites %}
-    	<div><p>{{ website.name }} : <b>{{ post.body }}</b></p></div>
-    {% endfor %}
 
     {% if websites %}
 	    <table style="width:100%">
@@ -16,8 +13,10 @@
 		  </tr>
 
 		  {% for website in websites %}
+		  	<tr>
 		  	<td>{{ website.name }}</td>
 		    <td>{{ website.status }}</td>
+			</tr>
 		  {% endfor %}
 		</table>
 	{% endif %}
