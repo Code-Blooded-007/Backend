@@ -10,7 +10,8 @@ sudo apt-get install virtualenv
 ```
 
 ```
-
+git clone https://github.com/Code-Blooded-007/Backend.git
+cd Backend
 virtualenv -p python3 venv
 source venv/bin/activate
 pip install -r requirements.txt
