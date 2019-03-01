@@ -1,22 +1,16 @@
 from flask import render_template, url_for, flash, redirect, request
 from werkzeug.urls import url_parse
 from app import app
-from app.forms import RegistrationForm, LoginForm
-from flask_login import current_user, login_user, logout_user
-from app.models import Admin
+from app.forms import RegistrationForm, LoginForm, WebsiteForm
+from flask_login import current_user, login_user, logout_user, login_required
+from app.models import Admin, Website
 from app import db
 
 @app.route('/')
 @app.route('/index/')
 @app.route('/home/')
 def index():
-	websites = [
-		{'name' : 'google.com', 'status' :'active'},
-		{'name' : 'ghrcem.net', 'status' : 'active'},
-		{'name' : 'mis.com', 'status' : 'not active'},
-		{'name' : 'github.com', 'status' : 'active'},
-		{'name' : 'w3school.com', 'status' : 'active'}
-	]
+	websites = Website.query.all()
 	return render_template('index.html', title='Home', websites=websites)
 
 
@@ -57,3 +51,16 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
+
+@app.route("/website/add", methods=['GET', 'POST'])
+@login_required
+def add_website():
+	form = WebsiteForm()
+	if form.validate_on_submit():
+		website = Website(name=form.name.data, url=form.url.data, verification_doc_url=form.verification_doc_url.data, admin=current_user)
+		db.session.add(website)
+		db.session.commit()
+		flash('Your website has been created! Will be listed after super-admin approval.' , 'success')
+		return redirect(url_for('index'))
+	return render_template('add_website.html', title='Add Website', form=form)

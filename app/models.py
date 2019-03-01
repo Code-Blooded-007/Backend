@@ -28,7 +28,7 @@ class Website(db.Model):
 	message_sent = db.Column(db.Boolean, default=False)
 	remark = db.Column(db.String(200), default='N/A', nullable=False)
 	approved = db.Column(db.Boolean, default=False)
-	verification_doc_url = db.Column(db.String(150))
+	verification_doc_url = db.Column(db.String())
 	admin_id = db.Column(db.Integer, db.ForeignKey('admin.id'), nullable=False)
 
 	def __repr__(self):

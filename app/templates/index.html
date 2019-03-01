@@ -10,12 +10,14 @@
 		  <tr>
 		    <th>Name</th>
 		    <th>Status</th> 
+		    <th>Admin</th>
 		  </tr>
 
 		  {% for website in websites %}
 		  	<tr>
 		  	<td>{{ website.name }}</td>
-		    <td>{{ website.status }}</td>
+		    <td>{{ website.http_status_code }}</td>
+		    <td>{{ website.admin.name }}</td>
 			</tr>
 		  {% endfor %}
 		</table>
