@@ -36,6 +36,21 @@
 						{{ form.email(class="form-control form-control-lg") }}
 					{% endif %}
 				<br>
+
+					{{ form.phone_number.label(class="form-control-label") }}
+					{% if form.phone_number.errors %}
+						{{ form.phone_number(class="form-control form-control-lg is-invalid") }}
+						
+							{% for error in form.phone_number.errors %}
+								<span style="color: red;">{{ error }}</span>
+							{% endfor %}
+						
+					{% else %}
+						{{ form.phone_number(class="form-control form-control-lg") }}
+					{% endif %}
+
+
+				<br>
 				
 					{{ form.password.label(class="form-control-label") }}
 					{% if form.password.errors %}
